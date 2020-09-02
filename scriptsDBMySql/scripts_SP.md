@@ -1,0 +1,16 @@
+**INSERT**
+DELIMITER $
+
+CREATE PROCEDURE SP_INSERE(CPF int, NOME varchar(20), SEXO char(1), COD int, MODELO varchar(20), MARCA varchar(20))
+BEGIN
+	INSERT INTO pessoa VALUES(CPF, NOME, SEXO);
+    INSERT INTO computador VALUES(COD, MODELO, MARCA);
+    INSERT INTO pessoa_has_computador VALUES(CPF, COD);
+    
+END
+$
+
+DELIMITER ;
+
+
+
