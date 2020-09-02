@@ -26,12 +26,7 @@ class Model
         echo "INSERIDO COM SUCESSO.";
     }
 
-    public function consultaGeral()
-    {
-        $stmt = $this->conn->prepare('CALL SP_CONSULTA()');
-        $consulta = $stmt->execute();
-        echo $consulta;
-    }
+    
 }
 
 
