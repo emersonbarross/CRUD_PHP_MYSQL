@@ -23,10 +23,10 @@ class Model
 
         $stmt->execute();
 
-        echo "INSERIDO COM SUCESSO.";
+        echo "REGISTRO INSERIDO COM SUCESSO.";
     }
 
-    public static function consultaGeral()
+    public function consultaGeral()
     {
         $stmt = $this->conn->prepare('CALL SP_CONSULTA_GERAL()');
         $stmt->execute();
@@ -34,7 +34,7 @@ class Model
         echo json_encode($consulta);
     }
 
-    public function update($acpf, $acod, $ncpf = NULL, $ncod)
+    public function updateUso($acpf, $acod, $ncpf = NULL, $ncod)
     {
         if(is_null($ncpf))
         {
@@ -48,7 +48,18 @@ class Model
         $stmt->bindparam(':N_COD', $ncod);
 
         $stmt->execute();
-        echo "ATUALIZADO";
+        echo "REGISTRO ATUALIZADO";
+    }
+
+    public function deleteUso($cpf, $cod)
+    {
+        $stmt = $this->conn->prepare('CALL SP_DELETE(:CPF, :COD)');
+
+        $stmt->bindParam(':CPF', $cpf);
+        $stmt->bindParam(':COD', $cod);
+
+        $stmt->execute();
+        echo "REGISTRO DELETADO";
     }
 }
 

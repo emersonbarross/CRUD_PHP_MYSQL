@@ -4,10 +4,12 @@ require_once("config.php");
 
 $usuario = new Model();
 
-//$usuario->insere("050", "EMERSON", "M", "1412", "LATITUTE", "DELL");
+//$usuario->insere("050", "EMERSON", "M", "4050", "LATITUTE", "DELL");
 
-//$usuario->consultaGeral();
+$usuario->consultaGeral();
 
-$usuario->update("108", "4050", NULL, "1412");
+//$usuario->updateUso("108", "4050", NULL, "1412");
+
+//$usuario->deleteUso("50", "4050");
 
 ?>
