@@ -28,10 +28,13 @@ class Model
 
     public function consultaGeral()
     {
-        $stmt = $this->conn->prepare('CALL SP_CONSULTA()');
-        $consulta = $stmt->execute();
-        echo $consulta;
+        $stmt = $this->conn->prepare('CALL SP_CONSULTA_GERAL()');
+        $stmt->execute();
+        $consulta = $stmt->fetchall(PDO::FETCH_ASSOC);
+        echo json_encode($consulta);
     }
+
+    
 }
 
 
