@@ -26,7 +26,7 @@ class Model
         echo "INSERIDO COM SUCESSO.";
     }
 
-    public function consultaGeral()
+    public static function consultaGeral()
     {
         $stmt = $this->conn->prepare('CALL SP_CONSULTA_GERAL()');
         $stmt->execute();
@@ -34,7 +34,22 @@ class Model
         echo json_encode($consulta);
     }
 
-    
+    public function update($acpf, $acod, $ncpf = NULL, $ncod)
+    {
+        if(is_null($ncpf))
+        {
+            $ncpf = $acpf;
+        }
+        $stmt = $this->conn->prepare('CALL SP_UPDATE(:A_CPF, :A_COD, :N_CPF, :N_COD)');
+
+        $stmt->bindparam(':A_CPF', $acpf);
+        $stmt->bindparam(':A_COD', $acod);
+        $stmt->bindparam(':N_CPF', $ncpf);
+        $stmt->bindparam(':N_COD', $ncod);
+
+        $stmt->execute();
+        echo "ATUALIZADO";
+    }
 }
 
 
